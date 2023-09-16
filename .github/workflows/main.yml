@@ -15,8 +15,13 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
+<<<<<<< HEAD
           username: crocodility
           password: Paperclips17WOT
+=======
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+>>>>>>> 991fc23 (Update main.yml)
       
       - name: Extract metadata (tags, labels) for Docker
         id: meta
