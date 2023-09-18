@@ -11,7 +11,10 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
+<<<<<<< HEAD
       
+=======
+>>>>>>> 88c97a2 (Update main.yml)
       - name: Install Docker
         run: |
         # Install Docker
