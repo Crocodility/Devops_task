@@ -62,5 +62,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: stable
+          tags: docker.io/crocodility/simple-api:stable
           labels: ${{ steps.meta.outputs.labels }}
