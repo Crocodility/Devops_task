@@ -17,7 +17,6 @@ jobs:
 >>>>>>> 88c97a2 (Update main.yml)
       - name: Install Docker
         run: |
-        # Install Docker
           sudo apt-get update
           sudo apt-get -y install docker.io
           sudo systemctl start docker
