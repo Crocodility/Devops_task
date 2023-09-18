@@ -37,7 +37,6 @@ jobs:
           images: Crocodility/Simple-api
       - name: Build Docker image
         run: |
-        # Build the Docker image with tags
           docker build -t simple-api:${{ github.sha }} -t simple-api:${{ github.ref_name }} .
         working-directory: .
 
@@ -48,3 +47,24 @@ jobs:
           push: true
           tags: docker.io/crocodility/simple-api:stable
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Tag Docker image as 'latest'
+        run: |
+          docker tag simple-api:${{ github.sha }} simple-api:latest
+        if: success()
+
+      - name: Remove 'latest' tag from the previous version
+        run: |
+          if docker images simple-api:latest | grep -q ${GITHUB_SHA::12}; then
+            docker rmi simple-api:latest
+          fi
+        if: success() && github.event_name == 'push'
+
+      - name: Push Docker images
+        run: |
+          docker push simple-api:${{ github.sha }}
+          docker push simple-api:${{ github.ref_name }}
+          docker push simple-api:latest
+        if: success()
+
+      - name: Cleanup
+        run: docker image prune -f 
