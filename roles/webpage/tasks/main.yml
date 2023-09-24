@@ -1,0 +1,9 @@
+---
+- name: Download html
+  copy: src=files/index.html dest=/usr/share/nginx/html/index.html force=yes
+
+- name: Start and enable apache
+  systemd:
+    name: ubuntu
+    enabled: yes
+    state: started
