@@ -33,12 +33,4 @@ if [ "$playbook" = "update" ]; then
   ansible-playbook "$playbook.yml" \
   -i /etc/ansible/aws_ec2.yaml \
   -vv
-# work under command line. need testing under script
-# export ANSIBLE_HOSTS=$PWD/dinventory/ec2.py
-# export EC2_INI_PATH=$PWD/dinventory/ec2.ini
-# ansible-playbook "$playbook.yml" \
-# -u ec2-user \
-# -e "node=us-east-1" \
-# --become
-# -vv
 fi
