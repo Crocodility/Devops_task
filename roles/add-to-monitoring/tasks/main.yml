@@ -1,0 +1,8 @@
+---
+- name: Add a line to prometheus config
+  lineinfile:
+    path: /tmp/prometheus.yml
+    line: "    - {{ansible_ec2_public_ipv4}}:9100"
+    insertafter: EOF
+  delegate_to: "{{item}}"
+  with_items: "{{groups['tag_Name_Monitoring']}}"

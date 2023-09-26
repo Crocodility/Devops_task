@@ -60,17 +60,16 @@
   debug:
     var: ansible_ec2_public_ipv4
 
-
 - name: Starting docker
   shell: >
     sudo docker pull crocodility/simple-api:main && \
     sudo docker run -d -p 9007:9007 crocodility/simple-api:main
 
-- name: Set up prometheus
-  template: src=templates/prometheus.yml.j2 dest=/tmp/prometheus.yml force=yes
-  delegate_to: "{{item}}"
-  with_items: "{{groups['tag_Name_Monitoring']}}"
-
 - name: Starting node Exporter
   shell: >
-    sudo docker run -d -p 9100:9100 -v "/proc:/host/proc" -v "/sys:/host/sys" -v "/:/rootfs" --net="host" prom/node-exporter -collector.procfs /host/proc -collector.sysfs /host/proc -collector.filesystem.ignored-mount-points "^/(sys|proc|dev|host|etc)($|/)"
+    docker run -d \
+    --net="host" \
+    --pid="host" \
+    -v "/:/host:ro,rslave" \
+    quay.io/prometheus/node-exporter:latest \
+    --path.rootfs=/host

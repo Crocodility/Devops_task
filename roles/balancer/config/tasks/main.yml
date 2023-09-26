@@ -9,11 +9,3 @@
   template: src=templates/nginx_page.conf.j2 dest=/etc/nginx/nginx.conf force=yes
   delegate_to: "{{item}}"
   with_items: "{{groups['tag_Name_Webserver']}}"
-
-- name: Replace balancer ip in index.html
-  replace:
-    path: /usr/share/nginx/html/index.html
-    regexp: "balancer_ip"
-    replace: "{{ansible_ec2_public_ipv4}}"
-  delegate_to: "{{item}}"
-  with_items: "{{groups['tag_Name_Webserver']}}"

@@ -100,6 +100,14 @@
   roles:
     - { role: balancer/start }
 
+- name: Add backend servers to monitoring
+  hosts: tag_Name_Webserver:tag_Name_Backend1:tag_Name_Backend2
+  gather_facts: yes
+  user: ubuntu
+  become: true
+  roles:
+    - { role: add-to-monitoring }
+
 - name: Start monitoring
   hosts: tag_Name_Monitoring
   gather_facts: yes
