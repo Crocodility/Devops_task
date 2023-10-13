@@ -13,4 +13,5 @@ API entry points: / /ring-ring on 80 port of load balancer
 IP addresses of API servers are added to monitoring automatically
 
 Architecture provided on image:
+
 ![Arhitecutre image](https://github.com/Crocodility/Devops_task/blob/main/diagram.png)
