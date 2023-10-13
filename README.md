@@ -8,7 +8,7 @@ EC2 instance for load balancer on Nginx with less-connections logic
 EC2 instance for webserver, running index.php page
 EC2 instance for monitoring of backend servers, implemented with prometheus
 
-API entry points: / /ring-ring on 80 port of load balancer
+API entry points: / and /ring-ring on 80 port of load balancer
 
 IP addresses of API servers are added to monitoring automatically
 
