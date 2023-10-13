@@ -1,5 +1,7 @@
 Usage:
+
 start.sh -p start # Deploys the project
+
 start.sh -p update # Restarts docker containers, pushing any changes added to specified image on DockerHub to live
 
 Deployment involves:
